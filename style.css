@@ -23,8 +23,6 @@ body {
 }
 
 main {
-  width: 80rem;
-  height: 69.2rem;
   padding: 6.4rem 8rem;
   box-shadow: 0rem 0.4rem 3.2rem rgba(15, 23, 42, 0.15);
   border-radius: 1.6rem;
@@ -41,6 +39,7 @@ section h2 {
 .conversor .wrapper {
   margin-top: 1.6rem;
   display: flex;
+  align-items: center;
   gap: 1.6rem;
 }
 
@@ -56,6 +55,11 @@ section h2 {
   align-items: center;
 
   position: relative;
+}
+
+.money-wrapper:hover,
+.money-wrapper:has(:focus) {
+  outline: 0.25rem solid #7c3aed;
 }
 
 /* AMOUNT */
@@ -127,11 +131,6 @@ li:hover,
   border-radius: 50%;
 }
 
-.money-wrapper:hover,
-.money-wrapper:has(:focus) {
-  outline: 0.25rem solid #7c3aed;
-}
-
 /* UL */
 
 ul {
@@ -160,10 +159,17 @@ li {
   cursor: pointer;
 }
 
+
+/* CAMBIO */
+
 .cambio .wrapper {
   margin-top: 2.4rem;
-  width: 59.2rem;
-  height: 35.6rem;
 
-  border: 1px solid red;
+}
+
+.tooltip {
+  background-color: white;
+  box-shadow: 0 .4rem 1.6rem rgb(15 23 42 / .15);
+  border-radius: .4rem;
+  padding: .8rem;
 }
