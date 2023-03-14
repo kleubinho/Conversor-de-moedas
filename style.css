@@ -14,7 +14,8 @@
 
 body {
   font-size: 1.6rem; /* 16px */
-  background-color: #f8fafc;
+  /* background-color: #f8fafc; */
+  background-color: #121214;
 
   height: 100vh;
   display: grid;
@@ -26,6 +27,7 @@ main {
   padding: 6.4rem 8rem;
   box-shadow: 0rem 0.4rem 3.2rem rgba(15, 23, 42, 0.15);
   border-radius: 1.6rem;
+  background-color: #f8fafc;
 
   display: grid;
   gap: 6.4rem;
