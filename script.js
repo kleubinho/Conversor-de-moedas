@@ -102,25 +102,41 @@ const options = {
 const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
-const optionMenu = document.querySelector(".dropdown"),
-  selectOption = optionMenu.querySelector(".selected"),
-  optionsSelect = optionMenu.querySelectorAll(".option");
+const optionMenu = document.querySelector(".dropdown") /* Pegando UL */,
+  selectedOption = optionMenu.querySelector(".selected") /* Pegando elemento que está selecionado */,
+  optionsSelect = optionMenu.querySelectorAll(".option"); /* Pegando todos os elementos */
+  
+  const inputCurrency = document.querySelector("#inputAmount");
 
+  function languageCountry(language) {
+    switch(language){
+      case 'BRL':
+        return 'pt-BR'
+      case 'USD':  
+      return 'en-US'
+        default: 
+        console.log('Deu ruim')
+    }
+  }
+  
 optionsSelect.forEach((option) => {
   option.addEventListener("click", () => {
-    selectOption.innerHTML = option.innerHTML;
+    selectedOption.innerHTML = option.innerHTML;
+    let flagSelected = selectedOption.childNodes[3].id;
+
+    inputCurrency.addEventListener("change", (event) => {
+      let amount = event.srcElement.value;
+      console.log(flagSelected)
+      let formatted = new Intl.NumberFormat(languageCountry(flagSelected), {
+        style: "currency",
+        currency: "BRL",
+      }).format(amount);
+    
+      return (inputCurrency.value = formatted);
+    });
+    
   });
-  console.log(selectOption.children)
 });
 
-const inputCurrency = document.querySelector("#receba");
 
-inputCurrency.addEventListener("change", (event) => {
-  let amount = event.srcElement.value;
-  let formatted = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(amount);
 
-  return inputCurrency.value = formatted
-});
