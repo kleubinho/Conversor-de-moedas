@@ -110,30 +110,17 @@ optionsSelect.forEach((option) => {
   option.addEventListener("click", () => {
     selectOption.innerHTML = option.innerHTML;
   });
+  console.log(selectOption.children)
 });
 
-const inputCurrency = document.querySelector(".amount");
+const inputCurrency = document.querySelector("#receba");
 
-// function numberFormatter() {
-//   const numberFormatted = new Intl.NumberFormat("en-US", {
-//     style: "currency",
-//     currency: "USD",
-//   }).format(inputCurrency.value);
-
-//   return numberFormatted;
-// }
-
-// const numberFormatted = new Intl.NumberFormat("en-US", {
-//     style: "currency",
-//     currency: "USD",
-//   });
-
-inputCurrency.addEventListener("input", (event) => {
-  let amount = event.data;
-  let formatted = new Intl.NumberFormat("en-US", {
+inputCurrency.addEventListener("change", (event) => {
+  let amount = event.srcElement.value;
+  let formatted = new Intl.NumberFormat("pt-BR", {
     style: "currency",
-    currency: "USD",
+    currency: "BRL",
   }).format(amount);
 
-  return (inputCurrency.value = formatted);
+  return inputCurrency.value = formatted
 });
