@@ -103,22 +103,26 @@ const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
 const optionMenu = document.querySelector(".dropdown") /* Pegando UL */,
-  selectedOption = optionMenu.querySelector(".selected") /* Pegando elemento que está selecionado */,
-  optionsSelect = optionMenu.querySelectorAll(".option"); /* Pegando todos os elementos */
-  
-  const inputCurrency = document.querySelector("#inputAmount");
+  selectedOption =
+    optionMenu.querySelector(
+      ".selected"
+    ) /* Pegando elemento que está selecionado */,
+  optionsSelect =
+    optionMenu.querySelectorAll(".option"); /* Pegando todos os elementos */
 
-  function languageCountry(language) {
-    switch(language){
-      case 'BRL':
-        return 'pt-BR'
-      case 'USD':  
-      return 'en-US'
-        default: 
-        console.log('Deu ruim')
-    }
+const inputCurrency = document.querySelector("#inputAmount");
+
+function languageCountry(language) {
+  switch (language) {
+    case "BRL":
+      return "pt-BR";
+    case "USD":
+      return "en-US";
+    default:
+      console.log("Deu ruim");
   }
-  
+}
+
 optionsSelect.forEach((option) => {
   option.addEventListener("click", () => {
     selectedOption.innerHTML = option.innerHTML;
@@ -126,17 +130,37 @@ optionsSelect.forEach((option) => {
 
     inputCurrency.addEventListener("change", (event) => {
       let amount = event.srcElement.value;
-      console.log(flagSelected)
-      let formatted = new Intl.NumberFormat(languageCountry(flagSelected), {
-        style: "currency",
-        currency: "BRL",
-      }).format(amount);
-    
+      console.log(flagSelected);
+
+      let formatted
+
+      switch (flagSelected) {
+        case "BRL":
+           formatted = new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(amount);
+
+          return formatted;
+        case "USD":
+          formatted = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+          }).format(amount);
+          return formatted;
+        case "TTT":
+          formatted = new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(amount);
+          return formatted;
+        default:
+          console.log("Deu ruim");
+      }
+
+      console.log(formatted)
+
       return (inputCurrency.value = formatted);
     });
-    
   });
 });
-
-
-
